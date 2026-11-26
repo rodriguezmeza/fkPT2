@@ -1,5 +1,7 @@
 # fkPT2
 
+[![Read the Docs build status](https://app.readthedocs.org/projects/fkpt2/badge/?version=latest)](https://fkpt2.readthedocs.io/en/latest/)
+
 fkPT2 computes one-loop redshift-space power spectrum multipoles from a
 linear spectrum. It supports ΛCDM, Hu–Sawicki f(R) gravity, DGP gravity, and
 massive-neutrino cosmologies. Its CLPT and Gaussian Streaming Model addons
@@ -105,9 +107,9 @@ the input requirements and individual test targets.
 
 ## Documentation
 
-The [Sphinx manual](docs/index.rst) covers installation, the CLI and Python
-API, gravity models, and how to add models and observables. Build the HTML
-with Python 3.11 or newer.
+The [published fkPT2 documentation](https://fkpt2.readthedocs.io/en/latest/) covers installation,
+the CLI and Python API, gravity models, and how to add models and observables.
+To build the [Sphinx manual](docs/index.rst) locally, use Python 3.11 or newer.
 
 ```sh
 python3 -m pip install -r docs/requirements.txt
