@@ -1,0 +1,16 @@
+[tool.cibuildwheel]
+build = ["cp39-*", "cp310-*", "cp311-*", "cp312-*", "cp313-*", "cp314-*", "cp315-*"]
+build-frontend = "build"
+test-command = "python {project}/tests/test_installed_wheel.py --smoke-source {package}/tests/test_packaging.py"
+environment = { FKPT2_MAKE_ARGS = "CLASSLIBON=0 OPENMPMACHINE=0 USEGSL=0" }
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64", "aarch64"]
+manylinux-x86_64-image = "manylinux_2_28"
+manylinux-aarch64-image = "manylinux_2_28"
+musllinux-x86_64-image = "musllinux_1_2"
+musllinux-aarch64-image = "musllinux_1_2"
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
+environment = { FKPT2_MAKE_ARGS = "CC=clang CLASSLIBON=0 OPENMPMACHINE=0 USEGSL=0", MACOSX_DEPLOYMENT_TARGET = "11.0" }
