@@ -5,9 +5,9 @@ test-command = "python {project}/tests/test_installed_wheel.py --smoke-source {p
 environment = { FKPT2_MAKE_ARGS = "CLASSLIBON=0 OPENMPMACHINE=0 USEGSL=0" }
 
 [tool.cibuildwheel.linux]
-# The project strings.h shadows the POSIX header on Linux. Force-include the
-# system declaration without changing the immutable published solver sources.
-environment = { FKPT2_MAKE_ARGS = "CLASSLIBON=0 OPENMPMACHINE=0 USEGSL=0", CPPFLAGS = "-include /usr/include/strings.h" }
+# Supply POSIX declarations for strcasecmp and mode_t on glibc and musl.
+# The bundled strings.h shadows the system header, so use its absolute path.
+environment = { FKPT2_MAKE_ARGS = "CLASSLIBON=0 OPENMPMACHINE=0 USEGSL=0", CPPFLAGS = "-include sys/types.h -include /usr/include/strings.h" }
 archs = ["x86_64", "aarch64"]
 manylinux-x86_64-image = "manylinux_2_28"
 manylinux-aarch64-image = "manylinux_2_28"
