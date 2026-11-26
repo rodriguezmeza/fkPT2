@@ -26,6 +26,13 @@ The file ``Output_quick/rsd_multipoles.txt`` contains ``k``, ``P0``, ``P2``, and
 ``P4``. See :doc:`quickstart` for the same run in Python and the optional CLPT
 and GSM output.
 
+Citation
+--------
+
+If you use fkPT2 in your research, please cite the fkPT paper by Mario A.
+Rodriguez-Meza et al. (2024). See :doc:`references` for the citation and
+papers on each observable.
+
 .. toctree::
    :maxdepth: 2
    :caption: User guide

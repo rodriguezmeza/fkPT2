@@ -1,14 +1,17 @@
 Scientific references
 =====================
 
-Match the references to the observable and gravity model used in your analysis.
+If you use fkPT2 in your research, please cite the fkPT paper by Mario A.
+Rodriguez-Meza et al. (2024). Match additional references to the observable
+and gravity model used in your analysis.
 
 Fourier-space power spectrum
 ----------------------------
 
-* Rodriguez-Meza et al. (2024), *fkPT: Constraining scale-dependent modified
-  gravity with the full-shape galaxy power spectrum*. The scale-dependent
-  growth approximation and the reference fkPT solver.
+* Mario A. Rodriguez-Meza et al. (2024), *fkPT: Constraining scale-dependent
+  modified gravity with the full-shape galaxy power spectrum*. The
+  scale-dependent growth approximation and the reference fkPT solver.
+  `JCAP 03 (2024) 049 <https://doi.org/10.1088/1475-7516/2024/03/049>`_,
   `arXiv:2312.10510 <https://arxiv.org/abs/2312.10510>`_.
 
 * Noriega, Aviles, Fromenteau, and Vargas-Magaña (2022), *Fast computation

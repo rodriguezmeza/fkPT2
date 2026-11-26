@@ -100,7 +100,7 @@ to require those dependencies. GitHub Actions exercises both `TEST_CLASS=0`
 and `TEST_CLASS=1`. See the [validation guide](docs/validation.rst) for
 the input requirements and individual test targets.
 
-## Documentation and citation
+## Documentation
 
 The [Sphinx manual](docs/index.rst) covers installation, the CLI and Python
 API, gravity models, and how to add models and observables. Build the HTML
@@ -115,6 +115,11 @@ Open `docs/_build/html/index.html`. The [publishing guide](docs/publishing.rst)
 covers Read the Docs setup. For a terminal reference, run
 `man ./docs/man/fkpt2.1`.
 
-See the [scientific references](docs/references.rst) for the fkPT method
-and the papers for each observable. fkPT2 is distributed under the
-[MIT License](LICENSE).
+## Citation
+
+If you use fkPT2 in your research, please cite the fkPT paper by Mario A.
+Rodriguez-Meza et al. (2024). [JCAP 03 (2024) 049](https://doi.org/10.1088/1475-7516/2024/03/049) ·
+[arXiv:2312.10510](https://arxiv.org/abs/2312.10510)
+
+See the [scientific references](docs/references.rst) for papers on each
+observable. fkPT2 is distributed under the [MIT License](LICENSE).
