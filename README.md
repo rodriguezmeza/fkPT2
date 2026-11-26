@@ -110,6 +110,21 @@ the input requirements and individual test targets.
 
 ## Documentation
 
+Ask the local tutor about the documentation, parameters, APIs, and imported
+project discussions:
+
+```sh
+./fkpt2 options=IA-tutor
+./fkpt2 options=IA-tutor --ask "How do I compute GSM multipoles in Python?"
+./fkpt2 options=IA-tutor --backend offline
+```
+
+The default uses local Ollama with `qwen3.5:4b` after `ollama pull qwen3.5:4b`
+and starting its service. Use `--backend offline` to search documentation
+without a model, or `/backend offline` during a conversation. See the
+[tutor guide](docs/ia_tutor.rst) for PDF support, private chat
+imports, configuration, and source citations.
+
 The [published fkPT2 documentation](https://fkpt2.readthedocs.io/en/stable/) covers installation,
 the CLI and Python API, gravity models, and how to add models and observables.
 To build the [Sphinx manual](docs/index.rst) locally, use Python 3.11 or newer.

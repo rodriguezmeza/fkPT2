@@ -1134,6 +1134,7 @@ local int print_options(struct cmdline_data* cmd,
                     "use to print on screen Makefile settings");
     
     verb_print_zero(cmd->verbose, "\n- print-models: list compiled gravity models\n");
+    verb_print_zero(cmd->verbose, "\n- IA-tutor: standalone documentation tutor (fkpt2 options=IA-tutor --help)\n");
     verb_print_zero(cmd->verbose, "\n- no-stop: %s\n\t%s\n",
                     "use in combination with 'make-info'",
                     "useful to continue the computation.");

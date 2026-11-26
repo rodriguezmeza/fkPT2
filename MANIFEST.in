@@ -1,6 +1,12 @@
 include Makefile Makefile_settings Makefile_machine LICENSE
 recursive-include python *.pyx *.pxd *.py
 include scripts/run_fkpt2_class.sh scripts/run_fkpt2_class.py scripts/class_lcdm.ini scripts/class_folps_nu.ini scripts/class_fkpt2.ini
+include scripts/ia_tutor.py tests/test_ia_tutor.py docs/ia_tutor.rst
+recursive-include tutor *.md
+recursive-include addons *README* *Readme*
+include python/Readme.txt docs/Readme.txt
+recursive-include docs *.md *.rst *.txt *.tex *.1 *.m
+prune docs/_build
 recursive-include include *.h *.def
 recursive-include source *.c
 recursive-include main *.c
