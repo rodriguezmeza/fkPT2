@@ -11,6 +11,7 @@ commit: ba8c440963fd40df160140363451e6b23fc03287
 repository-code: "https://github.com/rodriguezmeza/fkPT2"
 url: "https://github.com/rodriguezmeza/fkPT2/releases/tag/v0.1.0"
 license: MIT
+doi: "10.5281/zenodo.24561874"
 preferred-citation:
   type: article
   title: >-

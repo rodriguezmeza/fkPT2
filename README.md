@@ -2,6 +2,7 @@
 
 [![Read the Docs build status](https://app.readthedocs.org/projects/fkpt2/badge/?version=stable)](https://fkpt2.readthedocs.io/en/stable/)
 [![GitHub release v0.1.0](https://img.shields.io/badge/release-v0.1.0-blue?logo=github)](https://github.com/rodriguezmeza/fkPT2/releases/tag/v0.1.0)
+[![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24561874.svg)](https://doi.org/10.5281/zenodo.24561874)
 [![GitHub Actions tests](https://github.com/rodriguezmeza/fkPT2/actions/workflows/tests.yml/badge.svg?branch=main&event=push)](https://github.com/rodriguezmeza/fkPT2/actions/workflows/tests.yml)
 
 fkPT2 computes one-loop redshift-space power spectrum multipoles from a
