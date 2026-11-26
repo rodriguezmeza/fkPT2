@@ -1,6 +1,6 @@
 # fkPT2
 
-[![Read the Docs build status](https://app.readthedocs.org/projects/fkpt2/badge/?version=latest)](https://fkpt2.readthedocs.io/en/latest/)
+[![Read the Docs build status](https://app.readthedocs.org/projects/fkpt2/badge/?version=latest)](https://fkpt2.readthedocs.io/en/latest/) [![GitHub Actions tests](https://github.com/rodriguezmeza/fkPT2/actions/workflows/tests.yml/badge.svg?branch=main&event=push)](https://github.com/rodriguezmeza/fkPT2/actions/workflows/tests.yml)
 
 fkPT2 computes one-loop redshift-space power spectrum multipoles from a
 linear spectrum. It supports ΛCDM, Hu–Sawicki f(R) gravity, DGP gravity, and
