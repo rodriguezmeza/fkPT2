@@ -1,0 +1,33 @@
+include Makefile Makefile_settings Makefile_machine LICENSE
+recursive-include python *.pyx *.pxd *.py
+include scripts/run_fkpt2_class.sh scripts/run_fkpt2_class.py scripts/class_lcdm.ini scripts/class_folps_nu.ini scripts/class_fkpt2.ini
+recursive-include include *.h *.def
+recursive-include source *.c
+recursive-include main *.c
+recursive-include general_libs *.c *.h
+recursive-include getparam *.c *.h
+recursive-include addons *.c *.h *.mk Makefile*
+prune addons/gsl
+include README.md .readthedocs.yaml
+include docs/conf.py docs/requirements.txt docs/Makefile docs/make.bat
+include docs/index.rst docs/overview.rst docs/installation.rst docs/quickstart.rst
+include docs/class_workflow.rst docs/command_line.rst docs/inputs.rst docs/outputs.rst docs/models.rst docs/params.rst
+include docs/api.rst docs/validation.rst docs/troubleshooting.rst docs/references.rst docs/publishing.rst
+include docs/fkpt2-python.md docs/fkpt2-addons.md docs/fkpt2-clpt.md docs/fkpt2-gsm.md
+recursive-include docs/_ext *.py
+include tests/test_fkpt_regression.py tests/test_cython.py tests/test_addons.py tests/test_dgp_regression.py
+include tests/fkpt/Input/pkl_z05.dat tests/fkpt/Input/pklin_F5z045.dat
+recursive-include tests/fixtures/gravity_addon *.c *.mk
+recursive-include tests/fixtures/dgp *.c *.json
+include tests/test_clpt_regression.py tests/test_clpt_cython.py
+recursive-include tests/fixtures/clpt *.c *.json
+include tests/test_gsm_regression.py tests/test_gsm_cython.py
+include tests/test_openmp.py tests/test_folps_nu.py tests/test_class_workflow.py tests/test_class_bash.py tests/test_class_native.py tests/test_class_paramfile.py
+include tests/test_classy_paramfile.py
+include tests/test_class_python_runner.py
+include tests/test_class_multipoles.py
+include tests/test_class_selection.py
+include tests/run_class_multipoles_both.py
+recursive-include tests/fixtures/folps_nu *.dat
+include docs/fkpt2-folps-nu.rst
+recursive-include tests/fixtures/gsm *.json

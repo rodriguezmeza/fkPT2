@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    table.head, table.foot { width: 100%; }
+    td.head-rtitle, td.foot-os { text-align: right; }
+    td.head-vol { text-align: center; }
+    .Nd, .Bf, .Op { display: inline; }
+    .Pa, .Ad { font-style: italic; }
+    .Ms { font-weight: bold; }
+    .Bl-diag > dt { font-weight: bold; }
+    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
+      font-family: inherit; }
+  </style>
+  <title>FKPT2(1)</title>
+</head>
+<body>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">FKPT2(1)</td>
+    <td class="head-vol">User Commands</td>
+    <td class="head-rtitle">FKPT2(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<p class="Pp">fkpt2 - compute one-loop redshift-space power spectrum
+  multipoles</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<p class="Pp"><b>fkpt2</b> [<i>parameter-file</i>] [<i>name=value ...</i>]</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<p class="Pp"><b>fkpt2</b> computes one-loop redshift-space multipoles from a
+    linear power spectrum. The default build includes LCDM, Hu&#x2013;Sawicki
+    f(R), DGP, and massive-neutrino models and can compute real-space CLPT
+    correlations and Gaussian Streaming Model multipoles.</p>
+<p class="Pp">A parameter file accepts <i>name = value</i> or <i>name value</i>.
+    The characters # and % start comments outside quoted values. Command-line
+    settings override entries in the file.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="OPTIONS"><a class="permalink" href="#OPTIONS">OPTIONS</a></h1>
+<dl class="Bl-tag">
+  <dt id="help"><a class="permalink" href="#help"><b>--help</b></a></dt>
+  <dd>Show the parameter list and defaults for the current build.</dd>
+  <dt id="options=print-models"><a class="permalink" href="#options=print-models"><b>options=print-models</b></a></dt>
+  <dd>List the available gravity models.</dd>
+  <dt id="fnamePS="><a class="permalink" href="#fnamePS="><b>fnamePS=</b><i>path</i></a></dt>
+  <dd>Read the linear spectrum at <b>zout</b>. The first two columns give k in
+      h/Mpc and P(k) in (Mpc/h)&#x00B3;.</dd>
+  <dt id="model="><a class="permalink" href="#model="><b>model=</b><i>name</i></a></dt>
+  <dd>Select the gravity model. Use <b>model=HS fR0=1e-5</b> to select F5.</dd>
+  <dt id="clpt=true"><a class="permalink" href="#clpt=true"><b>clpt=true</b></a></dt>
+  <dd>Compute real-space correlations and displacement correlators.</dd>
+  <dt id="gsm=true"><a class="permalink" href="#gsm=true"><b>gsm=true</b></a></dt>
+  <dd>Compute Gaussian Streaming Model multipoles and their CLPT inputs.</dd>
+  <dt id="rootDir="><a class="permalink" href="#rootDir="><b>rootDir=</b><i>directory</i></a></dt>
+  <dd>Set the output directory. The default is <b>Output</b>.</dd>
+  <dt id="numberThreads="><a class="permalink" href="#numberThreads="><b>numberThreads=</b><i>count</i></a></dt>
+  <dd>Set the thread count for an OpenMP build.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>
+<dl class="Bl-tag">
+  <dt id="rsd_multipoles.txt"><a class="permalink" href="#rsd_multipoles.txt"><b>rsd_multipoles.txt</b></a></dt>
+  <dd>Wave number and monopole, quadrupole, and hexadecapole of the power
+      spectrum.</dd>
+  <dt id="tmp/"><a class="permalink" href="#tmp/"><b>tmp/</b></a></dt>
+  <dd>Resolved parameter values and, when <b>verbose_log=1</b> is set, a run
+      log.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
+<pre>fkpt2 model=HS fR0=1e-5 rootDir=Output_F5
+fkpt2 run.ini fR0=1e-6 rootDir=Output_F6
+fkpt2 gsm=true</pre>
+<p class="Pp">With the CLASS addon linked, use a combined <b>[class]</b> and
+    <b>[fkpt2]</b> parameter file.</p>
+<pre>fkpt2 scripts/class_fkpt2.ini</pre>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp">The fkPT2 Sphinx manual in docs/index.rst and the project
+  README.</p>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">November 25, 2026</td>
+    <td class="foot-os">fkPT2</td>
+  </tr>
+</table>
+</body>
+</html>

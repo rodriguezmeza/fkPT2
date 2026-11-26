@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=61", "wheel", "Cython>=3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fkpt2"
+version = "0.1.0"
+description = "One-loop redshift-space power spectrum multipoles"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.21"]

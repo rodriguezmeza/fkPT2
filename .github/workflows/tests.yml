@@ -1,0 +1,76 @@
+name: fkPT2 tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Base suite without CLASS
+            test_class: '0'
+          - name: Full suite with CLASS
+            test_class: '1'
+    env:
+      TEST_CLASS: ${{ matrix.test_class }}
+      FKPT_REFERENCE: ${{ github.workspace }}/.ci-deps/fkpt
+      CLASS_DIR: ${{ github.workspace }}/.ci-deps/class_public
+      CLASSY_PATH: ${{ github.workspace }}/build/classy
+    steps:
+      - name: Check out fkPT2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check out the fkPT regression reference
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: alejandroaviles/fkpt
+          ref: 6354d80a05724ce2a8c47b88720b9377c47bbdfe
+          path: .ci-deps/fkpt
+          persist-credentials: false
+
+      - name: Prepare spectrum fixtures
+        run: |
+          mkdir -p tests/fkpt/Input
+          for spectrum in pkl_z05.dat pklin_F5z045.dat; do
+            if [ ! -f "tests/fkpt/Input/$spectrum" ]; then
+              cp "$FKPT_REFERENCE/Input/$spectrum" "tests/fkpt/Input/$spectrum"
+            fi
+          done
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+
+      - name: Install NumPy
+        run: python -m pip install 'numpy==1.26.4'
+
+      - name: Check out CLASS
+        if: matrix.test_class == '1'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: lesgourg/class_public
+          ref: 1542f2c9bf5b7d3df598ab62ec7b3945e72f8525
+          path: .ci-deps/class_public
+          persist-credentials: false
+
+      - name: Build CLASS and install classy
+        if: matrix.test_class == '1'
+        run: |
+          python -m pip install 'Cython==3.1.4' 'setuptools>=61' wheel
+          make -C "$CLASS_DIR" -j2 class libclass.a
+          python -m pip install --no-build-isolation --no-deps --target "$CLASSY_PATH" "$CLASS_DIR"
+
+      - name: Run regressions
+        run: make -j2 test CLASSLIBON=0 TEST_CLASS="$TEST_CLASS"

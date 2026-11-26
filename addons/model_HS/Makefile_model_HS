@@ -1,0 +1,17 @@
+# ----- MAKE FILE machine definitions (model_HS) -----
+# Mario A. Rodriguez-Meza, Ciudad de Mexico, 31.10.2025
+#
+#
+
+#B Set of settings
+#
+ifeq ($(MODELHSON),1)
+OPT2 += -DMODELHS
+MODELHS = $(MDIR)/addons/model_HS/
+vpath %.c $(MDIR)/addons/model_HS/
+INCLUDES += -I$(MODELHS)
+HEADERFILES += $(wildcard $(MODELHS)/*.h)
+EXTERNAL +=
+endif
+#
+#E

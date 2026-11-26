@@ -1,0 +1,92 @@
+# ----- MAKE FILE machine definitions (AddOns settings) -----
+# Mario A. Rodriguez-Meza, Ciudad de Mexico, 31.10.2025
+#
+#
+
+#B Set of settings
+#
+#B Here switch on/off the AddOns´ modules
+
+
+# Optional in-memory spectrum source linked to upstream CLASS.
+CLASSLIBON = 0
+
+# Legacy Cython addon switch.
+PXDON = 0
+
+#B models
+
+# MODELHS
+# For computing RSD model Hu-Swicky
+MODELHSON = 1
+#
+
+# MODELDGP
+MODELDGPON = 1
+
+# FOLPS-nu massive-neutrino power spectra
+MODELFOLPSNUON = 1
+
+#E models
+
+# Real-space convolution Lagrangian perturbation theory
+CLPTON = 1
+GSMON = 1
+
+#E Set of settings
+
+
+############################
+#B Special behavior settings
+# In some routines/methods
+#   it will be possible to set the following flags
+
+# CMDLINE_DEFS_UNITSPHERE
+# set of useful default values for the unit sphere
+CMDLINE_DEFS_UNITSPHERE_ON = 1
+
+#B for some addons will be useful this switches
+DEFINEFLAGS =
+#
+_DEBUGON_ = 0
+LOGBINON = 0
+ifeq ($(LOGBINON),1)
+DEFINEFLAGS += -D_LOGBIN_
+endif
+ifeq ($(_DEBUGON_),1)
+DEFINEFLAGS += -D_DEBUG_
+endif
+#
+#
+OPT2 += $(DEFINEFLAGS)
+#E
+#
+
+#E
+############################
+
+
+############################
+#B Addendum of some not important
+#   modules or that are in
+#   development phase
+# Normally they will be switched OFF
+
+
+#E
+############################
+
+
+############################
+#B Addendum of some important
+#   modules that will not be part
+#       any longer of the public version
+# Normally they will be switched OFF
+############################
+
+
+#E Addendum of some not important
+#  no longer part of the public version
+############################
+
+

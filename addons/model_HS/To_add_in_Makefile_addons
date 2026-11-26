@@ -1,0 +1,24 @@
+# ----- MAKE FILE machine definitions (AddOns) -----
+# Mario A. Rodriguez-Meza, Ciudad de Mexico, 31.10.2025
+#
+#
+
+#B Set of settings
+#
+#
+
+#B To add in ../Makefile_addons
+#
+# MODELHS
+# For computing RSD model Hu-Swicky
+#
+# This line is added to ../Makefile_addons_settings
+#MODELHSON = 1
+#   ... then comment it
+#
+ifeq ($(MODELHSON),1)
+include $(MACHINES_DIR)/addons/model_HS/Makefile_model_HS
+endif
+#E
+
+

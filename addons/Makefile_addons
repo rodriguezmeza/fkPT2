@@ -1,0 +1,115 @@
+# ----- MAKE FILE machine definitions (AddOns) -----
+# Mario A. Rodriguez-Meza, Ciudad de Mexico, 31.10.2025
+#
+#
+
+# user not need to make any changes in this file
+
+#
+#B -----------Setting OPT2 (Makefile_addons_setting)-------------
+#
+
+#
+#E -----------Setting OPT2 (Makefile_addons_setting)-------------
+#
+
+
+#B Set of settings
+#
+# The AddOns are switched on/off here:
+include $(MACHINES_DIR)/addons/Makefile_addons_settings
+#
+
+#B Here insert AddOns´ Makefile modules
+
+# PXD
+# For cython interfacing...
+ifeq ($(PXDON),1)
+include $(MACHINES_DIR)/addons/pxd/Makefile_pxd
+endif
+#
+
+# Each module can opt in through its addon.mk manifest.
+FKPT2_ADDON_MAKEFILES ?= $(wildcard addons/*/addon.mk)
+ifneq ($(strip $(FKPT2_ADDON_MAKEFILES)),)
+include $(FKPT2_ADDON_MAKEFILES)
+endif
+ifneq ($(strip $(FKPT2_ADDON_SOURCES)),)
+vpath %.c $(sort $(dir $(abspath $(FKPT2_ADDON_SOURCES))))
+FKPT2_ADDON_HEADERS = $(wildcard $(addsuffix *.h,$(sort $(dir $(FKPT2_ADDON_SOURCES)))))
+endif
+
+#E Set of settings
+
+#
+# ------------------------
+# DO NOT DO ANYTHING BELOW
+# ------------------------
+#
+
+#B AddOns section
+ADDONS_ON = 1
+#
+ifeq ($(ADDONS_ON),1)
+ADDONSDIR = $(MDIR)/addons
+HEADERFILES = $(wildcard $(ADDONSDIR)/*.h)
+ADDONS = addons
+vpath %.c $(ADDONS)
+INCLUDES += -I$(ADDONSDIR)
+INCLUDES += -I$(ADDONSDIR)/addons_include/addons
+INCLUDES += -I$(ADDONSDIR)/addons_include
+INCLUDES += -I$(ADDONSDIR)/addons_include/general_libs
+INCLUDES += -I$(ADDONSDIR)/addons_include/include
+#INCLUDES += -I$(ADDONSDIR)/addons_include/source/search
+INCLUDES += -I$(ADDONSDIR)/addons_include/source/models
+INCLUDES += -I$(ADDONSDIR)/addons_include/source/startrun
+INCLUDES += -I$(ADDONSDIR)/addons_include/source/cballsio
+INCLUDES += -I$(ADDONSDIR)/addons_include/source/cballsutils
+#INCLUDES += -I$(ADDONSDIR)/addons_include/source/testdata
+#INCLUDES += -I$(ADDONSDIR)/addons_include/source/cballs
+#INCLUDES += -I$(ADDONSDIR)/addons_include/source/tree
+
+HEADERFILES = $(wildcard $(ADDONSDIR)/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/general_libs/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/include/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/models/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/startrun/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/cballsio/*.h)
+HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/cballsutils/*.h)
+
+#HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/search/*.h)
+#HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/testdata/*.h)
+#HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/cballs/*.h)
+#HEADERFILES = $(wildcard $(ADDONSDIR)/addons_include/source/tree/*.h)
+endif
+#
+#E
+
+
+############################
+#B Special behavior settings
+# In some searching methods
+#   it will be possible to set the following flags
+
+# CMDLINE_DEFS_UNITSPHERE
+# set of useful default values for the unit sphere
+ifeq ($(CMDLINE_DEFS_UNITSPHERE_ON),1)
+include $(MACHINES_DIR)/addons/cmdline_defs_settings/Makefile_cmdline_defs_settings
+endif
+#
+
+#E
+############################
+
+
+############################
+#B Addendum of some not important
+#   modules or that are in
+#   development phase
+# Normally they will be switched OFF
+
+
+#E
+############################
