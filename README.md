@@ -5,6 +5,9 @@ linear spectrum. It supports ΛCDM, Hu–Sawicki f(R) gravity, DGP gravity, and
 massive-neutrino cosmologies. Its CLPT and Gaussian Streaming Model addons
 compute real-space correlations and redshift-space correlation multipoles.
 
+- **Author** Mario A. Rodriguez-Meza
+- **Major contributor** Alejandro Aviles
+
 ## Build and run
 
 Use GNU Make and a C compiler. The [installation guide](docs/installation.rst)
