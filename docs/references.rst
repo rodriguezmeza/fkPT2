@@ -5,6 +5,9 @@ If you use fkPT2 in your research, please cite the fkPT paper by Mario A.
 Rodriguez-Meza et al. (2024). Match additional references to the observable
 and gravity model used in your analysis.
 
+The fkPT2 v0.1.0 source archive is available on Zenodo.
+`Software DOI 10.5281/zenodo.24561874 <https://doi.org/10.5281/zenodo.24561874>`_.
+
 Fourier-space power spectrum
 ----------------------------
 
