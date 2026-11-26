@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use fkPT2 in your research, please cite the fkPT paper below."
+title: fkPT2
+type: software
+authors:
+  - family-names: Rodriguez-Meza
+    given-names: "Mario A."
+version: "0.2.0"
+date-released: "2026-11-26"
+repository-code: "https://github.com/rodriguezmeza/fkPT2"
+url: "https://github.com/rodriguezmeza/fkPT2/releases/tag/v0.2.0"
+license: MIT
+preferred-citation:
+  type: article
+  title: >-
+    fkPT: constraining scale-dependent modified gravity with the full-shape
+    galaxy power spectrum
+  authors:
+    - family-names: Rodriguez-Meza
+      given-names: "Mario A."
+    - family-names: Aviles
+      given-names: Alejandro
+    - family-names: Noriega
+      given-names: "Hernan E."
+    - family-names: Ruan
+      given-names: Cheng-Zong
+    - family-names: Li
+      given-names: Baojiu
+    - family-names: Vargas-Magaña
+      given-names: Mariana
+    - family-names: Cervantes-Cota
+      given-names: "Jorge L."
+  journal: "Journal of Cosmology and Astroparticle Physics"
+  year: 2024
+  month: 3
+  volume: "2024"
+  issue: "03"
+  start: "049"
+  doi: "10.1088/1475-7516/2024/03/049"

@@ -83,4 +83,4 @@ PARAMETER_ALIAS(numthreads, numberThreads, "16", "Number of OpenMP threads", nth
 PARAMETER_ALIAS(numthreads, numberThreads, "1", "Number of threads", nthreads)
 #endif
 PARAMETER_ALIAS(options, options, "", "Run options (e.g. make-info, print-options, IA-tutor)", opt)
-PARAMETER(version, Version, "2.0.0", "fkPT2 version")
+PARAMETER(version, Version, "0.2.0", "fkPT2 version")
