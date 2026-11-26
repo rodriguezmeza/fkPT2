@@ -68,9 +68,10 @@ jobs:
       - name: Build CLASS and install classy
         if: matrix.test_class == '1'
         run: |
-          python -m pip install 'Cython==3.1.4' 'setuptools>=61' wheel
+          python -m pip install 'Cython==3.1.4' 'scipy==1.15.3' 'setuptools>=61' wheel
           make -C "$CLASS_DIR" -j2 class libclass.a
           python -m pip install --no-build-isolation --no-deps --target "$CLASSY_PATH" "$CLASS_DIR"
+          PYTHONPATH="$CLASSY_PATH" python -c 'from classy import Class'
 
       - name: Run regressions
         run: make -j2 test CLASSLIBON=0 TEST_CLASS="$TEST_CLASS"

@@ -12,12 +12,16 @@ Set up CLASS
 ------------
 
 Build fkPT2 and its Python extension as described in :doc:`installation`.
-The examples use the supplied CLASS checkout, which sits beside the fkPT2
-source directory in the tree below. Adjust ``class_dir`` for another checkout.
+Use the CLASS revision pinned by GitHub Actions and install NumPy and
+SciPy in the Python environment that imports ``classy``.
 
 .. code-block:: bash
 
-   class_dir="$PWD/../xother_files/github_codes_to-study/class_public_2026-11-25"
+   class_dir="$PWD/../class_public"
+   git clone https://github.com/lesgourg/class_public.git "$class_dir"
+   git -C "$class_dir" checkout 1542f2c9bf5b7d3df598ab62ec7b3945e72f8525
+   export CLASS_DIR="$class_dir" CLASS_BIN="$class_dir/class"
+   python3 -m pip install numpy scipy
    make -C "$class_dir" -j4 class
    python3 -m pip install --target "$PWD/build/classy" "$class_dir"
 
@@ -98,13 +102,11 @@ Run CLASS inside the fkPT2 executable
 -------------------------------------
 
 Build the upstream CLASS static library and enable the fkPT2 addon with
-``CLASSLIBON=1``. The default ``CLASS_DIR`` points to the supplied checkout.
-Set it explicitly to use another checkout with the corresponding
+``CLASSLIBON=1``. Set ``CLASS_DIR`` to a CLASS checkout with the corresponding
 ``libclass.a``, headers, and CLASS data files.
 
 .. code-block:: bash
 
-   class_dir="$PWD/../xother_files/github_codes_to-study/class_public_2026-11-25"
    make -C "$class_dir" -j4 libclass.a
    make -j4 CLASSLIBON=1 CLASS_DIR="$class_dir" all
 
@@ -203,9 +205,8 @@ arguments.
    bash scripts/run_fkpt2_class.sh scripts/class_lcdm.ini Nk=120 rootDir=Output_CLASS
    bash scripts/run_fkpt2_class.sh scripts/class_folps_nu.ini Nk=120 rootDir=Output_CLASS_NU
 
-The script looks for CLASS in the supplied checkout and fkPT2 in this
-source directory. Set ``CLASS_BIN`` or ``FKPT2_BIN`` to select another
-executable. The runner uses Python's standard library to prepare the input
+The script uses ``CLASS_BIN`` from the setup above and finds fkPT2 in this
+source directory. Set ``FKPT2_BIN`` to select a different fkPT2 executable. The runner uses Python's standard library to prepare the input
 and read CLASS's background output.
 
 The script writes ``class_linear.dat`` alongside the standard fkPT2 output
