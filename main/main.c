@@ -22,6 +22,7 @@
 
 #include "fkpt2_internal.h"
 #include "cmdline_defs.h"
+#include "ia_tutor_cli.h"
 
 struct cli_run {
     const char *program;
@@ -41,6 +42,8 @@ static int run_cli(void *state)
 
 int main(int argc, string argv[])
 {
+    int tutor_status = 0;
+    if (fkpt2_ia_tutor_cli(argc, argv, &tutor_status)) return tutor_status;
     struct cli_run run = {.program = argv[0]};
     run.gd.cpuinit = CPUTIME;
     run.gd.cpurealinit = rcpu_time();

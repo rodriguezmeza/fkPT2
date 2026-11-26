@@ -68,9 +68,16 @@ FKPT_REFERENCE ?= ../xother_files/fkpt_github/fkpt_2026-10-23
 FKPT_REFERENCE_CC ?= $(CC)
 TEST_PYTHON ?= $(PYTHON)
 
+.PHONY: ia-tutor test-ia-tutor
+ia-tutor:
+	$(PYTHON) scripts/ia_tutor.py
+
+test-ia-tutor: $(EXEC)
+	$(TEST_PYTHON) tests/test_ia_tutor.py --fkpt2 "$(EXEC)"
+
 # Set MGPT_REFERENCE to recheck the DGP and CLPT fixtures with MGPT.
 .PHONY: test test-default test-fkpt test-dgp test-clpt test-gsm test-folps-nu test-cython test-addons test-class-selection
-test test-default: test-fkpt test-dgp test-class-selection
+test test-default: test-fkpt test-dgp test-class-selection test-ia-tutor
 ifneq ($(filter fkpt2_clpt_addon,$(FKPT2_ADDON_DESCRIPTORS)),)
 test test-default: test-clpt
 endif

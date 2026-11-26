@@ -41,6 +41,7 @@ papers on each observable.
    installation
    quickstart
    command_line
+   ia_tutor
    inputs
    class_workflow
    outputs

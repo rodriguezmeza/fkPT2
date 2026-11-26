@@ -15,6 +15,12 @@ Use the compiled executable to inspect the available settings.
    ./fkpt2 options=print-models
    ./fkpt2 options=make-info
    ./fkpt2 options=print-options
+   ./fkpt2 options=IA-tutor
+
+The :doc:`ia_tutor` is a separate interactive information mode. It accepts tutor
+arguments such as ``--ask``, ``--backend offline``, and ``--model qwen3.5:4b``.
+It uses local Ollama with ``qwen3.5:4b`` by default.
+Launch it directly from one terminal; it does not initialize a calculation.
 
 Standalone discovery commands report the settings for that build. Parameter
 names are case-sensitive. Model names, such as ``LCDM`` and ``HS``, are

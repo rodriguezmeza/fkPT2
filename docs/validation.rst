@@ -57,6 +57,12 @@ and the one- and four-thread runs. See :doc:`fkpt2-folps-nu` for details.
 Interface and addon regression
 ------------------------------
 
+``make test-ia-tutor`` checks local documentation retrieval, exact parameter
+definitions, chat imports and provenance, PDF-cache invalidation, offline
+behavior, native launch isolation, and the Ollama chat protocol. It uses
+temporary fixtures and mock model replies, with no model download or network
+dependency. Both ``make test`` and ``make test-default`` include it.
+
 With Cython, setuptools, and NumPy installed, run:
 
 .. code-block:: bash

@@ -12,6 +12,7 @@ __pycache__/
 .libs/
 
 /.ci-deps/
+/.fkpt2-tutor/
 /build/
 /dist/
 /docs/_build/
