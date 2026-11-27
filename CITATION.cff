@@ -10,6 +10,7 @@ date-released: "2026-11-26"
 repository-code: "https://github.com/rodriguezmeza/fkPT2"
 url: "https://github.com/rodriguezmeza/fkPT2/releases/tag/v0.2.0"
 license: MIT
+doi: "10.5281/zenodo.24573150"
 preferred-citation:
   type: article
   title: >-
