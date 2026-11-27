@@ -1,0 +1,118 @@
+name: Build release wheels
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published PyPI version to build wheels for
+        required: true
+        default: '0.1.0'
+        type: string
+  push:
+    paths:
+      - .github/workflows/wheels.yml
+      - .github/cibuildwheel.toml
+      - scripts/prepare_wheel_source.py
+      - scripts/check_wheel_matrix.py
+      - tests/test_installed_wheel.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wheels-${{ github.ref }}-${{ inputs.version || '0.1.0' }}
+  cancel-in-progress: false
+
+env:
+  FKPT2_WHEEL_VERSION: ${{ inputs.version || '0.1.0' }}
+
+jobs:
+  build:
+    name: CPython ${{ matrix.python }} / ${{ matrix.target.name }}
+    runs-on: ${{ matrix.target.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['39', '310', '311', '312', '313', '314', '315']
+        target:
+          - {name: linux-x86_64, os: ubuntu-24.04, platform: linux, arch: x86_64}
+          - {name: linux-aarch64, os: ubuntu-24.04-arm, platform: linux, arch: aarch64}
+          - {name: macos-x86_64, os: macos-15-intel, platform: macos, arch: x86_64}
+          - {name: macos-arm64, os: macos-15, platform: macos, arch: arm64}
+    steps:
+      - name: Check out build configuration
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up build driver Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.13'
+
+      - name: Install wheel builder
+        run: python -m pip install 'cibuildwheel==4.3.5'
+
+      - name: Verify and unpack the published source archive
+        run: python scripts/prepare_wheel_source.py "$FKPT2_WHEEL_VERSION"
+
+      - name: Build, repair, and test wheels
+        env:
+          CIBW_BUILD: cp${{ matrix.python }}-*
+          CIBW_PLATFORM: ${{ matrix.target.platform }}
+          CIBW_ARCHS: ${{ matrix.target.arch }}
+        run: >-
+          python -m cibuildwheel
+          --config-file .github/cibuildwheel.toml
+          --output-dir wheelhouse
+          "wheel-source/fkpt2-$FKPT2_WHEEL_VERSION"
+
+      - name: Save tested wheels and source provenance
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: wheels-${{ matrix.target.name }}-cp${{ matrix.python }}
+          path: |
+            wheelhouse/*.whl
+            wheel-source/source-provenance.json
+          if-no-files-found: error
+          retention-days: 14
+
+  collect:
+    name: Validate the complete release wheel set
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out release validators
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.13'
+
+      - name: Download all tested wheels
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: wheels-*
+          path: incoming
+          merge-multiple: true
+
+      - name: Check every interpreter and platform
+        run: |
+          python -m pip install 'twine==7.0.0'
+          python scripts/check_wheel_matrix.py --version "$FKPT2_WHEEL_VERSION" --directory incoming
+          python -m twine check --strict incoming/wheelhouse/*.whl
+
+      - name: Save the complete tested wheel set
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: fkpt2-${{ env.FKPT2_WHEEL_VERSION }}-wheels
+          path: |
+            incoming/wheelhouse/*.whl
+            incoming/wheel-source/source-provenance.json
+          if-no-files-found: error
+          retention-days: 14

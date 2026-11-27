@@ -1,8 +1,64 @@
 Installation
 ============
 
-Build from the fkPT2 source directory. All shell commands in this guide
-start from that directory unless a different location is shown.
+Install a published release with pip, or build from the fkPT2 source directory.
+Source build commands below start from that directory.
+
+Pip installation
+----------------
+
+Install the `PyPI release <https://pypi.org/project/fkpt2/>`_ into a virtual
+environment. Matching prebuilt wheels need no C compiler, GNU Make, or source
+checkout. See the supported CPython versions and platforms below.
+
+.. code-block:: bash
+
+   python3 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install fkpt2
+   python -c "import fkpt2; print(fkpt2.available_models())"
+   fkpt2 options=print-models
+   fkpt2
+
+This installs the Cython extension and Python helpers, plus the ``fkpt2``
+and ``fkpt2-emulate`` commands. The wheel contains both native executables,
+the default spectrum, and the tutor documentation; it does not need the
+source checkout at runtime. Run the commands from any working directory.
+The default run writes to that directory's ``Output/``. Native Windows
+builds are not supported; use a Linux environment such as WSL.
+
+The installed tutor uses the virtual environment's Python::
+
+   fkpt2 options=IA-tutor --backend offline --ask "How do I compute GSM multipoles?"
+
+The ``fkpt2 0.1.0`` release provides 42 prebuilt wheels for regular CPython
+3.9 through 3.15 with this platform matrix:
+
+.. list-table::
+   :header-rows: 1
+
+   * - System
+     - Architectures
+     - Binary compatibility baseline
+   * - Linux (glibc)
+     - x86_64 and aarch64
+     - manylinux_2_28 (glibc 2.28+)
+   * - Alpine Linux (musl)
+     - x86_64 and aarch64
+     - musllinux_1_2 (musl 1.2+)
+   * - macOS
+     - Intel x86_64 and Apple Silicon arm64
+     - macOS 11+
+
+To require binary distributions for fkPT2 and its dependencies, use::
+
+   python -m pip install --only-binary=:all: fkpt2
+
+This reports an unavailable wheel instead of falling back to compilation.
+PyPy, free-threaded CPython, Windows, and other architectures are outside this
+release wheel matrix. For source installations, including ``pip install .``
+from this checkout, install a C compiler with Python headers, GNU Make, and
+``ar``. Source build dependencies are installed automatically by pip.
 
 Native CLI and library
 ----------------------
