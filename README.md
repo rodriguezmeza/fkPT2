@@ -13,6 +13,37 @@ compute real-space correlations and redshift-space correlation multipoles.
 - **Author** Mario A. Rodriguez-Meza
 - **Major contributor** Alejandro Aviles
 
+## Install with pip
+
+Prebuilt wheels are available for **CPython 3.9–3.15** on Linux and macOS,
+for Intel and ARM. A matching wheel installs without a C compiler or GNU Make.
+Install the [PyPI release](https://pypi.org/project/fkpt2/) into a virtual environment:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install fkpt2
+python -c "import fkpt2; print(fkpt2.available_models())"
+fkpt2 options=print-models
+```
+
+To require prebuilt wheels for fkPT2 and its dependencies:
+
+```sh
+python -m pip install --only-binary=:all: fkpt2
+```
+
+This reports an unavailable wheel if the environment is outside the supported
+matrix. Source installations require a C compiler, GNU Make, and `ar`.
+
+The installation provides the Python interface, the `fkpt2` and
+`fkpt2-emulate` commands, the default spectrum, and the tutor documentation.
+The commands work from any directory; calculation outputs go to the current
+directory's `Output/` by default. For an editable development installation,
+use `python -m pip install -e .`. See the
+[installation guide](docs/installation.rst)
+for platform compatibility, source installations, and build options.
+
 ## Build and run
 
 Use GNU Make and a C compiler. The [installation guide](docs/installation.rst)
